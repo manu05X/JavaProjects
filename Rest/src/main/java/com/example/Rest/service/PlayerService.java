@@ -1,11 +1,17 @@
 package com.example.Rest.service;
 
 import com.example.Rest.entity.Player;
+import com.example.Rest.exception.PlayerNotFoundException;
 import com.example.Rest.repository.PlayerRepository;
+import jakarta.transaction.Transactional;
+import org.apache.el.util.ReflectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -33,7 +39,7 @@ public class PlayerService {
         }
         //if value is not found, throw a runtime exception
         else{
-            throw new RuntimeException("Player with id " + id + "not found. ");
+            throw new PlayerNotFoundException("Player with id " + id + "not found. ");
         }
 
         return p;
@@ -45,6 +51,7 @@ public class PlayerService {
         return repo.save(p);
     }
 
+    /*
     //Update a player
     public Player updatePlayer(int id, Player p){
         //get player Object by ID
@@ -59,10 +66,74 @@ public class PlayerService {
         //save update
         return repo.save(player);
     }
+    */
+
+    //Update a player
+    public Player updatePlayer(int id, Player p) {
+        Optional<Player> tempPlayer = repo.findById(id);
+
+        if(tempPlayer.isEmpty())
+            throw new PlayerNotFoundException("Player with id {"+ id +"} not found");
+
+        p.setId(id);
+        return repo.save(p);
+    }
 
     //Partial update
+    public Player patch(int id, Map<String, Object> partialPlayer){
+        Optional<Player> player = repo.findById(id);
+
+        if(player.isPresent()){
+            partialPlayer.forEach((key, value) -> {
+                System.out.println("Key: " + key + " Value: " + value);
+                Field field = ReflectionUtils.findField(Player.class, key);
+                ReflectionUtils.makeAccessible(field);
+                ReflectionUtils.setField(field, player.get(), value);
+            });
+        }
+        else {
+            throw new PlayerNotFoundException("Player with id {"+ id +"} not found");
+        }
+
+        return repo.save(player.get());
+    }
+
+    //update a single field her titles
+    @Transactional
+    public void updateTitles(int id, int titles){
+        Optional<Player> tempPlayer = repo.findById(id);
+
+        if(tempPlayer.isEmpty()){
+            throw new PlayerNotFoundException("Player with id {" + id + "} not found");
+        }
+
+        repo.updateTitles(id, titles);
+    }
+
 
     //delete a player
+    /*
+    public String deletePlayer(int id){
+        try{
+            repo.deleteById(id);
+        } catch (Exception e){
+            return "Player with id " + id + "not found";
+        }
+
+        return "Deleted player with id" + id;
+    }
+    */
+
+    //delete a player
+    public void deletePlayer(int id) {
+        Optional<Player> tempPlayer = repo.findById(id);
+
+        if(tempPlayer.isEmpty())
+            throw new PlayerNotFoundException("Player with id {"+ id +"} not found");
+
+        repo.delete(tempPlayer.get());
+    }
+
 }
 
 /*
