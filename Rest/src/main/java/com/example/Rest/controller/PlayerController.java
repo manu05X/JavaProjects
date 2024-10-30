@@ -3,9 +3,7 @@ package com.example.Rest.controller;
 import com.example.Rest.entity.Player;
 import com.example.Rest.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,13 +28,25 @@ public class PlayerController {
         return serviceObj.getPlayer(id);
     }
 
+    @PostMapping("/players")
+    public Player addPlayer(@RequestBody Player player){
+        player.setId(0);
+        return serviceObj.addPlayer(player);
+    }
+
+    @PutMapping("/players/{id}")
+    public Player updatePlayer(@PathVariable int id, @RequestBody Player player){
+        return serviceObj.updatePlayer(id, player);
+    }
+
 
 }
 /*
 
 
 - The getAllPlayers method returns a List of Player objects. The REST API will convert that list of POJOs to JSON and return it to the client.
-- The controller method calls the service layer method getAllPlayers(). To be able to use the PlayerService methods, we will autowire PlayerService in the PlayerController class.
+- The controller method calls the service layer method getAllPlayers().
+- To be able to use the PlayerService methods, we will autowire PlayerService in the PlayerController class.
 - The getAllPlayers method returns a List of Player objects. The REST API will convert that list of POJOs to JSON and return it to the client.
 
 
