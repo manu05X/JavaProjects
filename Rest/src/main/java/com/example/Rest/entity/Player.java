@@ -82,3 +82,15 @@ public class Player {
                 + ", titles= " + titles + "]";
     }
 }
+
+/*
+
+We will use the @Entity annotation to map the class to a database table.
+The @Id and @GeneratedValue annotations are used to mark the primary key and define the manner in which values are generated.
+By default, dates are saved as Timestamp by Hibernate.
+When we annotate the birthDate field with @JsonFormat, Jackson will use the provided format for serializing and deserializing the field.
+
+We will also generate getters and setters for the fields which are needed by Jackson to handle conversion between Player POJO and JSON.
+
+
+* */

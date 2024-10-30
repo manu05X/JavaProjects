@@ -4,6 +4,7 @@ import com.example.Rest.entity.Player;
 import com.example.Rest.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 public class PlayerController {
 
     @Autowired
-    PlayerService service;
+    PlayerService serviceObj;
 
     @GetMapping("/welcome")
     public String welcome(){
@@ -21,8 +22,30 @@ public class PlayerController {
 
     @GetMapping("/players")
     public List<Player> allPlayers(){
-        return service.getAllPlayers();
+        return serviceObj.getAllPlayers();
+    }
+
+    @GetMapping("/players/{id}")
+    public Player getPlayer(@PathVariable int id){
+        return serviceObj.getPlayer(id);
     }
 
 
 }
+/*
+
+
+- The getAllPlayers method returns a List of Player objects. The REST API will convert that list of POJOs to JSON and return it to the client.
+- The controller method calls the service layer method getAllPlayers(). To be able to use the PlayerService methods, we will autowire PlayerService in the PlayerController class.
+- The getAllPlayers method returns a List of Player objects. The REST API will convert that list of POJOs to JSON and return it to the client.
+
+
+- Path variables are a way of parameterizing the path or endpoint to accept data.
+- Path variables are written in curly braces. When the client sends a request, it passes a value in place of the path variable.
+- For example, we could say /players/1 to give us the player with Id 1, or /players/3 for the player with Id 3.
+
+- JpaRepository interface provides us with methods for all basic CRUD operations. We need to write a service method to call the repository.
+- We will call this method getPlayer. It takes an integer id as input and returns a Player object.
+
+
+ */
