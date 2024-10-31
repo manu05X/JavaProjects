@@ -34,4 +34,5 @@ public class PlayerController {
     public void deletePlayer(@PathVariable int id){
         playerService.deletePlayer(id);
     }
+
 }
