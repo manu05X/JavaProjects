@@ -1,0 +1,51 @@
+package com.example.PlayerProfile.service;
+
+import com.example.PlayerProfile.entity.Player;
+import com.example.PlayerProfile.repository.PlayerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class PlayerService {
+
+    @Autowired
+    PlayerRepository repoPlayer;
+
+    public List<Player> allPlayers(){
+        return repoPlayer.findAll();
+    }
+
+    public Player getPlayer(int id){
+        Optional<Player> tempPlayer = repoPlayer.findById(id);
+
+        Player p = null;
+
+        if(tempPlayer.isEmpty()){
+            throw new RuntimeException("Player with id {"+ id +"} not found");
+        } else {
+            p = tempPlayer.get();
+        }
+
+        return p;
+    }
+
+    public Player addPlayer(Player player){
+        player.setId(0);
+        return repoPlayer.save(player);
+    }
+
+    public void deletePlayer(int id){
+        Optional<Player> tempPlayer = repoPlayer.findById(id);
+        Player p = null;
+        if(tempPlayer.isEmpty()){
+            throw new RuntimeException("Player with id {"+ id +"} not found");
+        } else {
+            p = tempPlayer.get();
+        }
+
+        repoPlayer.delete(p);
+    }
+}
