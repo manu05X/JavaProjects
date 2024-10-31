@@ -36,12 +36,32 @@ public class PlayerProfileService {
     public PlayerProfile addPlayerProfile(PlayerProfile profile){
         profile.setId(0);
 
+        //check if profile contains nested player
+        if(profile.getPlayer() != null){
+            profile.getPlayer().setPlayerProfile(profile);
+        }
         return repoProfile.save(profile);
     }
 
-
+    /*
     public void deletePlayerProfile(int id){
         repoProfile.deleteById(id);
+    }
+    */
+    public void deletePlayerProfile(int id) {
+        PlayerProfile tempPlayerProfile = repoProfile.findById(id).get();
+
+        //set the playerProfile field of the Player object to null
+        tempPlayerProfile.getPlayer().setPlayerProfile(null);
+
+        //set the player field of the PlayerProfile object to null
+        tempPlayerProfile.setPlayer(null);
+
+        //save changes
+        repoProfile.save(tempPlayerProfile);
+
+        //delete the PlayerProfile object
+        repoProfile.delete(tempPlayerProfile);
     }
 
 }

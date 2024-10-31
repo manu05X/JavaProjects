@@ -43,6 +43,7 @@ public class PlayerController {
     @PutMapping("/{id}/profiles/{profile_id}")
     public Player assignDetail(@PathVariable int id, @PathVariable int profile_id) {
         PlayerProfile profile = playerProfileService.getPlayerProfile(profile_id);
+        System.out.println(profile);
         return playerService.assignProfile(id, profile);
     }
 

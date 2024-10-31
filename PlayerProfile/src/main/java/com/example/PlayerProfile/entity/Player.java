@@ -1,12 +1,14 @@
 package com.example.PlayerProfile.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+
+
 @Entity
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +18,8 @@ public class Player {
 
     @OneToOne(cascade=CascadeType.ALL)//, optional = false)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
+
+    // @JsonManagedReference
     private PlayerProfile playerProfile;
 
     public Player( ) {

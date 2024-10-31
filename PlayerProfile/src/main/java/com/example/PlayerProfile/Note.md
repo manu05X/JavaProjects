@@ -196,3 +196,191 @@ Hibernate supports three variations of the `@OneToOne` mapping.
 The figure below illustrates the three ways in which `@OneToOne` annotation can be used.
 
 ![img_2.png](images/img7.png)
+
+
+## One-to-One Bidirectional Relationship
+Right now, we have a unidirectional one-to-one mapping which means that if we have a Twitter account, we cannot find the name of the player who has that account. A GET request to /profiles only gets the PlayerProfile object and not the Player it is associated with.
+
+It is however possible to find the Twitter account, if we have the Player entity. As can be seen from a GET request to /players, the PlayerProfile entities are also fetched.
+
+- In the unidirectional one-to-one relationship, the `Player` class maintains the relationship. 
+- The `PlayerProfile` class cannot see any change in the relationship.To make this relationship bidirectional, we need to make some modifications to the `PlayerProfile` class. 
+- We will add a field to reference back to the `Player` class and add the `@OneToOne` annotation. 
+- We will also add getter and setter methods to set the `Player` value in the `PlayerProfile` class. This will enable us to fetch the entities in both directions.
+![img.png](images/img8.png)
+
+## Bi-directional relationship
+To set up a bidirectional relationship, we will add a field of `Player` class in the `PlayerProfile` class and add getter and setter methods for the field. This field holds the reference to the associated `Player` entity.
+```java
+public class PlayerProfile {
+    @Id
+    @GeneratedValue(GenertionType.IDENTITY)
+    private int id;
+    private String twitter;
+
+    private Player player;
+
+    //...
+
+    public Player getPlayer() {
+		return player;
+	}
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	@Override
+	public String toString() {
+		return "PlayerDetail [id=" + id + ", twitter=" + twitter + ", player=" + player + "]";
+	} 
+}
+```
+- The toString() method also needs to be updated to include the newly added player field.
+
+## mappedBy attribute
+Next, we will add the `@OneToOne` annotation on the `player` field. `mappedBy` is an optional attribute of the `@oneToOne` annotation which specifies the name of the field which owns the relationship. In our case, it is the `playerProfile` field in the `Player` class. The `mappedBy` attribute is placed on the inverse side on the relationship only. The owning side cannot have this attribute.
+```java
+public class PlayerProfile {
+	//...
+	@OneToOne(mappedBy="playerProfile")
+    private Player player;
+
+    //...
+}
+```
+![img_1.png](images/img9.png)
+
+- If we visit the web console of the  database (at http://localhost:8080/), we will see that there is no change in the database structure. 
+- The primary key of the `player_profile` table is stored as the foreign key in the player table as shown in the `Entity` Relationship Diagram below. 
+- On the Java side however, we can now access the `Player` entity using the `PlayerProfile` entity.
+![img_2.png](images/img10.png)
+
+- To test the bidirectional relationship, we will create a Player with a nested PlayerProfile object using the following JSON POST request to http://localhost:8080/players :
+```json
+{
+    "name": "Djokovic",
+    "playerProfile": {
+        "twitter" : "@DjokerNole"
+    }
+}
+```
+This request results in two `INSERT` queries in the player and `player_profile` tables respectively.
+
+- Bidirectional relationship means that `Djokovic` owns the `@DjokerNole` Twitter account and vice versa, the `@DjokerNole` account belongs to `Djokovic`. If we now send a GET request to `/profiles` we will get the player details as well.
+![img_3.png](images/img11.png)
+
+## JSON Infinite Recursion
+If you are following along in your local dev environment, you must have encountered an error when trying to access `/profiles`.
+
+- When using a bidirectional relationship, JSON throws an infinite recursion error when we try to retrieve the objects. This is because the `Player` object contains the reference of `PlayerProfile` object and the `PlayerProfile` object also contains the reference to the `Player` object.
+![img_4.png](images/img12.png)
+- The response in Postman looks like this:
+![img_5.png](images/img13.png)
+
+## Solution 2: @JsonManagedReference and @JsonBackReference
+Another solution is to use the `@JsonManagedReference` and `@JsonBackReference` annotations in the classes. As a result, only the owning side of the relationship is serialized and the inverse side is not serialized.
+
+The `@JsonManagedReference` annotation is used on the `playerProfile` field in the owning side (`Player` class). On the inverse side (`PlayerProfile` class), the `@JsonBackReference` annotation is used to the player field. These annotations solve the infinite recursion problem.
+```java
+public class Player{
+  //...
+  @OneToOne(cascade=CascadeType.ALL)
+  @JoinColumn(name = "profile_id", referencedColumnName = "id")
+  @JsonManagedReference
+  private PlayerProfile playerProfile;
+  //...
+}
+```
+- Now let’s use the @JsonBackReference annotation:
+```java
+public class PlayerProfile {
+	//...
+	@OneToOne(mappedBy="playerProfile")
+    @JsonBackReference
+    private Player player;
+
+    //...
+}
+```
+## Cascade Type
+For the bidirectional relationship, we can specify the cascade type in the PlayerProfile class as follows:
+```java
+@OneToOne(mappedBy= "playerProfile", cascade= CascadeType.ALL)
+private Player player;
+```
+`CascadeType.ALL` means that if we delete a `PlayerProfile` object, the associated `Player` object will also be deleted.
+![img_6.png](images/img14.png)
+
+Since we do not want that to happen, we need to break the association between the two objects before calling `delete()` on the `PlayerProfile` object.
+
+We will modify the `deletePlayerProfile` method in the `PlayerProfileService` class. The following code removes the link between the `PlayerProfile` and `Player` object by manually setting the references to `null` before deleting from the database.
+```java
+public void deletePlayerProfile(int id) {
+    PlayerProfile tempPlayerProfile = repo.findById(id).get(); 
+
+    //set the playerProfile field of the Player object to null
+    tempPlayerProfile.getPlayer().setPlayerProfile(null);
+
+    //set the player field of the PlayerProfile object to null
+    tempPlayerProfile.setPlayer(null);
+
+    //save changes
+    repo.save(tempPlayerProfile);
+
+    //delete the PlayerProfile object
+    repo.delete(tempPlayerProfile); 
+}
+```
+- Now when the `PlayerProfile` object is deleted, the `Player` object is not affected.
+
+![img_7.png](images/img15.png)
+
+- Ensure the application is running in the widget above before sending `HTTP requests` using the API widget below.
+
+## Optional attribute:
+The @OneToOne annotation has an optional attribute. By default the value is true meaning that the association can be null. We can explicitly set it to false for the playerProfile attribute in the Player class:
+```java
+@OneToOne(cascade=CascadeType.ALL, optional = false) 
+@JoinColumn(name = "profile_id", referencedColumnName = "id")
+private PlayerProfile playerProfile;
+```
+
+If the value of the optional attribute is set to false, then we will get an error when a Player object is added without an associated PlayerProfile object.
+
+The following POST request to \players now returns a DataIntegrityViolationException as the playerProfile field cannot be left blank.
+```json
+{
+    "name": "Federer"
+}
+```
+However, adding a Player with a nested PlayerProfile object, as shown below, does not result in an error.
+```json
+{
+    "name": "Djokovic",
+    "playerProfile": {
+        "twitter" : "@DjokerNole"
+    }
+}
+```
+
+> - When we add the `PlayerProfile` object first and then add the `Player` object by using the reference of the `PlayerProfile` object, JPA throws the detached entity passed to persist error. This error can be removed by changing the cascade type in the `Player` class to `CascadeType.Merge`.
+> - REASON: `save()` method calls `persist()` for new entities and `merge()` for existing entities. `Player` is a new entity so `persist()` is called and the operation is cascaded to `PlayerProfile`. However, since the `PlayerProfile` already exists, it needs to be merged, not persisted. When we change the cascade type to MERGE, `persist()` is not cascaded to `PlayerProfile` and the exception is avoided. However, if we add a `Player` object with a nested `PlayerProfile` object now, we will get the `Not-null property references a transient` value error.
+
+## Pros and cons of bidirectional relationship
+- Bidirectional relationships are better than unidirectional relationships in terms of performance as both ends of the relationship are aware of any changes.
+
+- When using bidirectional relationships, consistency must be ensured. If a `Player` object references a `PlayerProfile` object, the same `PlayerProfile` object must reference back to the `Player` object. Failure to ensure consistency can lead to unpredictable `JPA behavior`.
+
+- A `con` of having bidirectional association is that it may make the application vulnerable in terms of security since the referenced side can now be used to access the owning side (we can access the Player object using the `PlayerProfile` object).Infinite recursion is also an issue when using bidirectional relationships with Jackson, Hibernate JPA, and/or Elasticsearch implementations.
+
+
+
+
+
+
+
+
+
+
+
+

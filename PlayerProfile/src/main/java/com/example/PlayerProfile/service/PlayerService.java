@@ -50,11 +50,20 @@ public class PlayerService {
         repoPlayer.delete(p);
     }
 
-
+    /*
     //assign a profile to a player
     public Player assignProfile(int id, PlayerProfile profile) {
         Player player = repoPlayer.findById(id).get();
         player.setPlayerProfile(profile);
+        return repoPlayer.save(player);
+    }
+    */
+    //assign a profile to a player
+    public Player assignProfile(int id, PlayerProfile profile) {
+        Player player = repoPlayer.findById(id).get();
+        player.setPlayerProfile(profile);
+        //bidirectional
+        player.getPlayerProfile().setPlayer(player);
         return repoPlayer.save(player);
     }
 }
