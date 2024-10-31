@@ -1,6 +1,8 @@
 package com.example.TurnamentRegistration.controller;
 
+import com.example.TurnamentRegistration.entity.Registration;
 import com.example.TurnamentRegistration.entity.Tournament;
+import com.example.TurnamentRegistration.service.RegistrationService;
 import com.example.TurnamentRegistration.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ public class TournamentController {
 
     @Autowired
     TournamentService tournamentService;
+
+    @Autowired
+    RegistrationService registrationService;
 
     @GetMapping
     public List<Tournament> allTournaments(){
@@ -32,5 +37,12 @@ public class TournamentController {
     @DeleteMapping("/{id}")
     public void deleteTournament(@PathVariable int id){
         tournamentService.deleteTournament(id);
+    }
+
+    @PutMapping("/{id}/registrations/{registration_id}")
+    public Tournament addRegistration(@PathVariable int id, @PathVariable int registration_id) {
+        Registration registration = registrationService.getRegistration(registration_id);
+        System.out.println(registration);
+        return tournamentService.addRegistration(id, registration);
     }
 }

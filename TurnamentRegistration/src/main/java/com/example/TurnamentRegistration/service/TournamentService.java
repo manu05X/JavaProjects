@@ -1,5 +1,6 @@
 package com.example.TurnamentRegistration.service;
 
+import com.example.TurnamentRegistration.entity.Registration;
 import com.example.TurnamentRegistration.entity.Tournament;
 import com.example.TurnamentRegistration.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,15 @@ public class TournamentService {
         }
 
         tournamentRepo.delete(t);
+    }
+
+    //Assigning registration to tournament
+    /*
+        We need a PUT mapping in the TournamentController class to assign a registration to a tournament. First, we need to write the service layer method addRegistration in the TournamentService class as shown:
+     */
+    public Tournament addRegistration(int id, Registration registration) {
+        Tournament tournament = tournamentRepo.findById(id).get();
+        tournament.addRegistration(registration);
+        return tournamentRepo.save(tournament);
     }
 }
