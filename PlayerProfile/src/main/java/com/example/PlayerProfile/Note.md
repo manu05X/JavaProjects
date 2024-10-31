@@ -103,3 +103,96 @@ public interface PlayerRepository extends JpaRepository <Player, Integer> {
 public interface PlayerProfileRepository extends JpaRepository <PlayerProfile, Integer> {
 }
 ```
+
+## Persisting records
+- We can create a Player entity by sending a POST request to /players with the following request body:
+```java
+{
+  "name": "Federer"
+}
+```
+From the response, it can be seen that Hibernate assigns the player an id of 1.
+```java
+{
+ "twitter" : "@rogerfederer"
+}
+```
+Next, we will create a PlayerProfile entity by sending a POST request to /profiles.
+
+![img.png](images/img3.png)
+
+## Connecting player to profile
+- Right now, both entities are not connected. To assign the `PlayerProfile` to `Player`, we need to create a PUT mapping in the `PlayerController` class. This will enable us edit the `Player` entity and associate a `PlayerProfile` with it.
+
+- First, we need to write the service layer method. Create a method named `assignProfile` in the `PlayerService` class. This method is responsible for updating a Player record. It simply uses the setter method for the `playerProfile` field and then calls `save()` to update the record in the database.
+
+```java
+public Player assignProfile(int id, PlayerProfile profile) {
+    Player player = repo.findById(id).get();
+    player.setPlayerProfile(profile);
+    return repo.save(player);
+}
+```
+
+- Now we can add a method in the `PlayerController` class which maps a PUT request to `/players/{id}/profiles/{profile_id}` and updates the `Player` entity. Create a method named `assignDetail()` in the `PlayerController` class. Using the `profile_id` from the URI, we retrieve the `PlayerProfile` entity and then pass it to the `assignProfile` method in the `PlayerService` class.
+
+- To be able to access the `PlayerProfileService`, we need to autowire it in the `PlayerController` class.
+```java
+public class PlayerController {
+	@Autowired
+	PlayerService service;
+	
+	@Autowired
+	PlayerProfileService profileService;
+
+    //...
+
+    @PutMapping("/{id}/profiles/{profile_id}")
+    public Player assignDetail(@PathVariable int id, @PathVariable int profile_id) {
+        PlayerProfile profile = profileService.getPlayerProfile(profile_id); 
+        return service.assignProfile(id, profile);
+    }
+}
+```
+- With the above service and controller methods in place, we can send a PUT request to `/players/1/profiles/1`. This request will update the `Player` with id `1` and assign the `PlayerProfile` object with id `1` to it.
+
+
+- A POST request to `/players` shows that the relationship has been established.
+```json
+[
+  {
+    "name": "Federer",
+    "playerProfile": {
+      "twitter": "@rogerfederer"
+    }
+  },
+  {
+    "name": "Djokovic",
+    "playerProfile": {
+      "twitter": "@DjokerNole"
+    }
+  }
+]
+
+```
+- This will not only insert a row in the player table but also insert a corresponding row in the player_profile table. Hibernate fires two INSERT queries because we have set the `CascadeType` to `ALL`. This ensures that changes to the player table are propagated to the player_detail table.
+![img.png](images/img5.png)
+
+
+
+
+- A GET request to `/players/1` shows that the relationship has been established.
+![img_1.png](images/img4.png)
+
+- This is an example of a unidirectional one-to-one relationship. It is possible to retrieve a PlayerProfile object using a Player object but no way to retrieve a Player object using a PlayerProfile object, as can be seen from the GET request to /players and /profiles.
+![img_1.png](images/img6.png)
+
+## Hibernate implementation of @OneToOne
+Hibernate supports three variations of the `@OneToOne` mapping.
+- Using foreign key with the `@JoinColumn` annotation.
+- Using a common join table which has foreign keys of both tables. The @JoinTable annotation defines a new table name which has the foreign key from both tables. This helps in modelling optional one-to-one relationships. If a player does not have a `PlayerProfile` entry, we have to use null value in that column.
+- Using a shared primary key to save space. This approach uses a common primary key (`player_id` in this case) in both tables using the `@PrimaryKeyJoinColumn`. It eliminates the need of having an `Id` column for the `player_profile` table.
+
+The figure below illustrates the three ways in which `@OneToOne` annotation can be used.
+
+![img_2.png](images/img7.png)

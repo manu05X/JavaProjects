@@ -1,6 +1,7 @@
 package com.example.PlayerProfile.service;
 
 import com.example.PlayerProfile.entity.Player;
+import com.example.PlayerProfile.entity.PlayerProfile;
 import com.example.PlayerProfile.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,13 @@ public class PlayerService {
         }
 
         repoPlayer.delete(p);
+    }
+
+
+    //assign a profile to a player
+    public Player assignProfile(int id, PlayerProfile profile) {
+        Player player = repoPlayer.findById(id).get();
+        player.setPlayerProfile(profile);
+        return repoPlayer.save(player);
     }
 }
