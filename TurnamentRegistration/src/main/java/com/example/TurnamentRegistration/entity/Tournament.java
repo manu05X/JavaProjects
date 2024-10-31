@@ -1,8 +1,6 @@
 package com.example.TurnamentRegistration.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +15,8 @@ public class Tournament {
     private String name;
     private String location;
 
-    @OneToMany(cascade=CascadeType.ALL)
+    // @OneToMany(cascade=CascadeType.REMOVE)
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
     @JoinColumn(name="tournament_id")
     private List<Registration> registrations = new ArrayList<>();
 
@@ -72,6 +71,12 @@ public class Tournament {
     //set up one to many relationship
     public void addRegistration(Registration reg) {
         registrations.add(reg);
+    }
+
+    //remove registration :  method removeRegistration in the Tournament class which removes a registration from the List of Registrations. It is called by removeRegistration from TournamentService.
+    public void removeRegistration(Registration reg) {
+        if (registrations != null)
+            registrations.remove(reg);
     }
 
     @Override

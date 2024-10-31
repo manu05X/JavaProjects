@@ -62,4 +62,11 @@ public class TournamentService {
         tournament.addRegistration(registration);
         return tournamentRepo.save(tournament);
     }
+
+    //This method removeRegistration in the TournamentService class which breaks the association between a Tournament and a Registration object by utilizing the removeRegistration method created in Tournament.
+    public Tournament removeRegistration(int id, Registration registration) {
+        Tournament tournament = tournamentRepo.findById(id).get();
+        tournament.removeRegistration(registration);
+        return tournamentRepo.save(tournament);
+    }
 }

@@ -45,4 +45,12 @@ public class TournamentController {
         System.out.println(registration);
         return tournamentService.addRegistration(id, registration);
     }
+
+    //The removeRegistration method removes the registration entity having registraion_id as its key from the Tournament entity specified using id.
+    @PutMapping("/{id}/remove_registrations/{registration_id}")
+    public Tournament removeRegistration(@PathVariable int id, @PathVariable int registration_id) {
+        Registration registration = registrationService.getRegistration(registration_id);
+        System.out.println(registration);
+        return tournamentService.removeRegistration(id, registration);
+    }
 }
