@@ -162,7 +162,7 @@ In a typical layered architecture, the Data Transfer Object (DTO) and Data Acces
 2. **Service Layer** ↔ **DTO** (for data transfer to/from the **Controller**)
 
 This positioning ensures a clear separation of concerns and facilitates maintainability and testability in your application architecture.
-
+___
 ### Role of DTO in the Architecture
 1. **Controller Layer:**
 
@@ -187,7 +187,7 @@ This positioning ensures a clear separation of concerns and facilitates maintain
 **Summary**
 
 Using **DTOs** helps to simplify data handling between the layers, allows for better control over the data being transferred, and helps maintain separation of concerns within the application.
-
+___
 
 
 ### Explain the use of @RestController? and what is Difference between @Controller vs @RestController?
@@ -206,3 +206,184 @@ Using **DTOs** helps to simplify data handling between the layers, allows for be
 - Typically used in web applications where the controller’s methods return views (like JSP, Thymeleaf templates).
 - Methods in a **@Controller** class are often used to handle HTTP requests and return model and view objects.
 - To return **JSON** or **XML** data from a method, you need to annotate the method with **@ResponseBody**.
+
+**@RestController**
+- Specialized version of @Controller used for `RESTful` web services.
+- Combines the functionality of `@Controlle`r and `@ResponseBody`.
+- Every method in a `@RestController` class automatically returns data (usually JSON or XML) directly in the HTTP response.
+___
+### How to handle HTTP methods (GET, POST, PUT, DELETE)?
+Handling HTTP methods (GET, POST, PUT, DELETE) in a Spring Boot application involves defining methods in your controller class and annotating them appropriately. Below are examples of how to handle each of these HTTP methods using Spring Boot.
+
+#### Explanation of HTTP Methods
+1. **GET**:
+   - @GetMapping is used to handle HTTP GET requests.
+   - Example: Retrieve all books or a book by ID.
+
+2. **POST**:
+   - @PostMapping is used to handle HTTP POST requests.
+   - Example: Create a new book.
+
+3. **PUT**:
+   - @PutMapping is used to handle HTTP PUT requests.
+   - Example: Update an existing book.
+
+4. **DELETE**:
+   - @DeleteMapping is used to handle HTTP DELETE requests.
+   - Example: Delete a book by ID.
+___
+### How to use @RequestMapping, @GetMapping, @PostMapping, etc.?
+Certainly! In Spring Boot, @RequestMapping, @GetMapping, @PostMapping, etc., are annotations used to map HTTP requests to specific handler methods in your controller classes. Let's go through each of these annotations and see how they are used.
+
+1. @RequestMapping
+   - @RequestMapping is a general-purpose annotation used to map web requests to handler methods in Spring MVC and Spring Boot applications. It can be applied at the class level and/or method level.
+```java
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Book getBookById(@PathVariable Long id) {
+        // Implementation
+    }
+}
+```
+In this example:
+- The class-level `@RequestMapping("/api/books")` annotation specifies that all requests to `/api/books` will be handled by this controller.
+- The method-level `@RequestMapping(value = "/{id}", method = RequestMethod.GET)` annotation specifies that GET requests to `/api/books/{id}` will be handled by the getBookById() method.
+
+2. @GetMapping
+   - @GetMapping is a shortcut for @RequestMapping(method = RequestMethod.GET). It is used to handle HTTP GET requests.
+   Example:
+```java
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable Long id) {
+        // Implementation
+    }
+}
+```
+3. @PostMapping
+   - @PostMapping is a shortcut for @RequestMapping(method = RequestMethod.POST). It is used to handle HTTP POST requests.
+```java
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    @PostMapping
+    public Book createBook(@RequestBody Book book) {
+        // Implementation
+    }
+}
+```
+4. @PutMapping
+   - @PutMapping is a shortcut for @RequestMapping(method = RequestMethod.PUT). It is used to handle HTTP PUT requests.
+```java
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    @PutMapping("/{id}")
+    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
+        // Implementation
+    }
+}
+```
+5. @DeleteMapping
+   - @DeleteMapping is a shortcut for @RequestMapping(method = RequestMethod.DELETE). It is used to handle HTTP DELETE requests.
+```java
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        // Implementation
+    }
+}
+```
+**Summary**
+- @RequestMapping is a generic annotation to map web requests to handler methods.
+- @GetMapping, @PostMapping, @PutMapping, and @DeleteMapping are shortcuts for specific HTTP methods.
+- These annotations can be applied at both class and method levels to handle requests at specific endpoints.
+
+By using these annotations, you can easily define the mappings between HTTP requests and your handler methods in Spring Boot applications.
+___
+
+### Explain the use of @PathVariable and @RequestParam.
+Sure! Both @PathVariable and @RequestParam are annotations used in Spring MVC and Spring Boot to handle parameters in web requests. However, they serve different purposes and are used in different scenarios.
+
+1. **@PathVariable**
+   - @PathVariable is used to extract values from the URI (or URL) template of the request. It is typically used to capture values from the URI and use them in your controller methods.
+   Example:
+```java
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable Long id) {
+        // Implementation to fetch book by ID
+    }
+}
+```
+In this example, {id} in the URI template /api/books/{id} is captured by @PathVariable Long id. When a request is made to /api/books/123, the value 123 is extracted and passed to the getBookById() method.
+
+2. **@RequestParam**
+   - @RequestParam is used to extract query parameters from the request URL. Query parameters are the key-value pairs that appear after the ? in a URL.
+   Example:
+```java
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    @GetMapping("/search")
+    public List<Book> searchBooks(@RequestParam String title) {
+        // Implementation to search books by title
+    }
+}
+```
+In this example, @RequestParam String title extracts the value of the title query parameter from the URL /api/books/search?title=Spring. When a request is made with /api/books/search?title=Spring, the value "Spring" is extracted and passed to the searchBooks() method.
+
+
+**Key Differences**
+**Path Variables (@PathVariable):**
+ - Used to extract values from the URI template.
+ - Typically used for required parameters in the URI.
+ - Values are part of the URI path.
+
+**Request Parameters (@RequestParam):**
+- Used to extract query parameters from the request URL.
+- Can be used for both required and optional parameters.
+- Values are part of the query string in the URL.
+
+**Summary**
+- Use @PathVariable to extract values from the URI template.
+- Use @RequestParam to extract query parameters from the request URL.
+- Both annotations help in handling different types of parameters in web requests efficiently in Spring Boot applications.
+___
+
+
+
+
+
+
+
+
+
