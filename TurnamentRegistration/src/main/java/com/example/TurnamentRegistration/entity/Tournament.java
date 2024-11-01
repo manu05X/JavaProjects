@@ -1,5 +1,6 @@
 package com.example.TurnamentRegistration.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -15,10 +16,19 @@ public class Tournament {
     private String name;
     private String location;
 
-    // @OneToMany(cascade=CascadeType.REMOVE)
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
     @JoinColumn(name="tournament_id")
     private List<Registration> registrations = new ArrayList<>();
+
+
+    @ManyToMany(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(
+            name = "tournament_categories",
+            joinColumns= @JoinColumn(name ="tournament_id"),  //FK of the owning side
+            inverseJoinColumns=@JoinColumn(name="category_id")  //FK of inverse side
+    )
+    @JsonIgnoreProperties("tournaments")
+    private List<Category> playingCategories = new ArrayList<>();
 
     public Tournament() {
     }
@@ -34,6 +44,28 @@ public class Tournament {
         this.name = name;
         this.location = location;
         this.registrations = registrations;
+    }
+
+    //set up one to many relationship
+    public void addRegistration(Registration reg) {
+        registrations.add(reg);
+    }
+
+    //remove registration
+    public void removeRegistration(Registration reg) {
+        if (registrations != null)
+            registrations.remove(reg);
+    }
+
+    //set up many to many relationship
+    public void addCategory(Category category) {
+        playingCategories.add(category);
+    }
+
+    //remove category
+    public void removeCategory(Category category) {
+        if (playingCategories != null)
+            playingCategories.remove(category);
     }
 
     public int getId() {
@@ -68,20 +100,17 @@ public class Tournament {
         this.registrations = registrations;
     }
 
-    //set up one to many relationship
-    public void addRegistration(Registration reg) {
-        registrations.add(reg);
+    public List<Category> getPlayingCategories() {
+        return playingCategories;
     }
 
-    //remove registration :  method removeRegistration in the Tournament class which removes a registration from the List of Registrations. It is called by removeRegistration from TournamentService.
-    public void removeRegistration(Registration reg) {
-        if (registrations != null)
-            registrations.remove(reg);
+    public void setPlayingCategories(List<Category> playingCategories) {
+        this.playingCategories = playingCategories;
     }
 
     @Override
     public String toString() {
         return "Tournament [id=" + id + ", name=" + name + ", location=" + location + ", registrations=" + registrations
-                + "]";
+                + ", playingCategories=" + playingCategories + "]";
     }
 }

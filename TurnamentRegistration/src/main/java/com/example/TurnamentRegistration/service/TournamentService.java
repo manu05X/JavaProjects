@@ -1,5 +1,6 @@
 package com.example.TurnamentRegistration.service;
 
+import com.example.TurnamentRegistration.entity.Category;
 import com.example.TurnamentRegistration.entity.Registration;
 import com.example.TurnamentRegistration.entity.Tournament;
 import com.example.TurnamentRegistration.repository.TournamentRepository;
@@ -67,6 +68,19 @@ public class TournamentService {
     public Tournament removeRegistration(int id, Registration registration) {
         Tournament tournament = tournamentRepo.findById(id).get();
         tournament.removeRegistration(registration);
+        return tournamentRepo.save(tournament);
+    }
+
+
+    public Tournament addCategory(int id, Category category) {
+        Tournament tournament = tournamentRepo.findById(id).get();
+        tournament.addCategory(category);
+        return tournamentRepo.save(tournament);
+    }
+
+    public Tournament removeCategory(int id, Category category) {
+        Tournament tournament = tournamentRepo.findById(id).get();
+        tournament.removeCategory(category);
         return tournamentRepo.save(tournament);
     }
 }
