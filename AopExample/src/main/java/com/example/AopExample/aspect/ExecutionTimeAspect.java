@@ -13,7 +13,9 @@ public class ExecutionTimeAspect {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Around("execution(* io.datajek.springaop.movierecommenderaop..*.*(..))")
+    //@Around("execution(* com.example.AopExample..*.*(..))")
+    //@Around("com.example.AopExample.aspect.JoinPointConfig.businessLayerPointcut()")
+    @Around("com.example.AopExample.aspect.JoinPointConfig.measureTimeAnnotation()")
     public Object calculateExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         //note start time
         long startTime = System.currentTimeMillis();

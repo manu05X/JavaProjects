@@ -9,27 +9,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 
+
 @Aspect
 @Configuration
 public class LoggingAspect {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @AfterReturning(value = "execution(* io.datajek.springaop.movierecommenderaop.business.*.*(..))",
-            returning = "result")
-    //@AfterReturning("execution(* io.datajek.springaop.movierecommenderaop.data.*.*(..))")
+    // Correct the package for the business layer pointcut in @AfterReturning
+    @AfterReturning(value = "execution(* com.example.AopExample.business.*.*(..))", returning = "result")
     public void logAfterExecution(JoinPoint joinPoint, Object result) {
-        //logger.info("Method {} complete", joinPoint);
         logger.info("{} returned with: {}", joinPoint, result);
     }
 
-    @AfterThrowing(value = "execution(* io.datajek.springaop.movierecommenderaop.business.*.*(..))",
-            throwing = "exception")
+    // Correct the package for the business layer pointcut in @AfterThrowing
+    @AfterThrowing(value = "execution(* com.example.AopExample.business.*.*(..))", throwing = "exception")
     public void logAfterException(JoinPoint joinPoint, Object exception) {
         logger.info("Exception in {} returned with: {}", joinPoint, exception);
     }
 
-    @After(value = "execution(* io.datajek.springaop.movierecommenderaop.business.*.*(..))")
+    // Correct the package for the business layer pointcut in @After
+    @After(value = "execution(* com.example.AopExample.business.*.*(..))")
     public void logAfterMethod(JoinPoint joinPoint) {
         logger.info("After {}", joinPoint);
     }
