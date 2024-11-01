@@ -2,6 +2,7 @@ package com.example.TurnamentRegistration.service;
 
 import com.example.TurnamentRegistration.entity.Player;
 import com.example.TurnamentRegistration.entity.PlayerProfile;
+import com.example.TurnamentRegistration.entity.Registration;
 import com.example.TurnamentRegistration.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class PlayerService {
     PlayerRepository repoPlayer;
 
     public List<Player> allPlayers(){
+
         return repoPlayer.findAll();
     }
 
@@ -35,6 +37,10 @@ public class PlayerService {
 
     public Player addPlayer(Player player){
         player.setId(0);
+        //check if player contains nested profile
+        if(player.getPlayerProfile()!=null) {
+            player.getPlayerProfile().setPlayer(player);
+        }
         return repoPlayer.save(player);
     }
 
@@ -64,6 +70,18 @@ public class PlayerService {
         player.setPlayerProfile(profile);
         //bidirectional
         player.getPlayerProfile().setPlayer(player);
+        return repoPlayer.save(player);
+    }
+
+    public Player assignRegistration(int id, Registration registration) {
+        Player player = repoPlayer.findById(id).get();
+        player.registerPlayer(registration);
+        return repoPlayer.save(player);
+    }
+
+    public Player removeRegistration(int id, Registration registration) {
+        Player player = repoPlayer.findById(id).get();
+        player.removeRegistration(registration);
         return repoPlayer.save(player);
     }
 }

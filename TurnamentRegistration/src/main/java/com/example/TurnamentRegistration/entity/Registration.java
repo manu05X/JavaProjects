@@ -1,9 +1,6 @@
 package com.example.TurnamentRegistration.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Registration {
@@ -11,6 +8,10 @@ public class Registration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})//, fetch=FetchType.LAZY
+    @JoinColumn(name="player_id", referencedColumnName = "id")
+    private Player player;
 
     public Registration(){
 
@@ -26,8 +27,16 @@ public class Registration {
         this.id = id;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     @Override
     public String toString(){
-        return "Registration [id=" + id + "]";
+        return "Registration [id=" + id + ", player=" + player + "]";
     }
 }
