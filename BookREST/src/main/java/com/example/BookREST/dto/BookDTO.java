@@ -1,47 +1,35 @@
-package com.example.BookREST.model;
+package com.example.BookREST.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BookDTO {
     private int id;
     private String title;
     private String author;
 
-    // Constructors, getters and setters
-    public Book() {}
+    // Constructors
+    public BookDTO() {}
 
-    public Book(int id, String title, String author) {
+    public BookDTO(int id, String title, String author) {
         this.id = id;
         this.title = title;
         this.author = author;
     }
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public String getAuthor() {
         return author;
     }
-
     public void setAuthor(String author) {
         this.author = author;
     }

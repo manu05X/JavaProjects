@@ -1,13 +1,92 @@
 package com.example.BookREST.controller;
 
+import com.example.BookREST.dto.BookDTO;
+import com.example.BookREST.mapper.BookMapper;
 import com.example.BookREST.model.Book;
 import com.example.BookREST.services.BookServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@RestController
+@RequestMapping("/book")
+public class BookController {
+    @Autowired
+    BookServices bookServices;
+
+    @GetMapping
+    public List<BookDTO> getAllBooks() {
+        return bookServices.getAllBooks()
+                .stream()
+                .map(BookMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{id}")
+    public BookDTO getBookById(@PathVariable int id) {
+        Book book = bookServices.getBookById(id);
+        return BookMapper.toDTO(book);
+    }
+
+    @PostMapping
+    public BookDTO createBook(@RequestBody BookDTO bookDTO) {
+        Book book = BookMapper.toEntity(bookDTO);
+        Book savedBook = bookServices.addBook(book);
+        return BookMapper.toDTO(savedBook);
+    }
+
+    @PutMapping("/{id}")
+    public BookDTO updateBook(@PathVariable int id, @RequestBody BookDTO bookDTO) {
+        Book updatedBook = BookMapper.toEntity(bookDTO);
+        Book book = bookServices.updateBook(id, updatedBook);
+        return BookMapper.toDTO(book);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable int id) {
+        bookServices.deleteBook(id);
+    }
+}
+
+
+/*
+@RestController
+@RequestMapping("/book")
+public class BookController {
+    @Autowired
+    BookServices bookServices;
+
+    @GetMapping
+    public List<Book> getAllBooks() {
+        return bookServices.getAllBooks();
+    }
+
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable int id) {
+        return bookServices.getBookById(id);
+    }
+
+    @PostMapping
+    public Book createBook(@RequestBody Book book) {
+        return bookServices.addBook(book);
+    }
+
+    @PutMapping("/{id}")
+    public Book updateBook(@PathVariable int id, @RequestBody Book book) {
+        return bookServices.updateBook(id, book);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable int id) {
+        bookServices.deleteBook(id);
+    }
+}
+*/
+
+
+/*
 @RestController
 @RequestMapping("/book")
 public class BookController {
@@ -68,3 +147,4 @@ public class BookController {
         bookServices.deleteBook(id);
     }
 }
+*/
