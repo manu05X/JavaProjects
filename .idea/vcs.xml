@@ -2,5 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Project Assignment/180011-achieve-dependency-injection-using-qualifier-annotation-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Project Assignment/180012-understanding-model-view-controller--mvc--pattern-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Project Assignment/181690-implementing-createorder-and-deleteorder-api-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Project Assignment/181691-bean-preference-with-primary-annotation-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Project Assignment/181692-install-and-update-api-validation-in-spring-boot-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Project Assignment/181693-provide-path-variables-and-body-in-apis-test_case" vcs="Git" />
   </component>
 </project>
