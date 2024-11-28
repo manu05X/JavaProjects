@@ -1,0 +1,4 @@
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/test/java/org/example/evaluations/controllers/CategoryControllerMvcTest.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/test/java/org/example/evaluations/controllers/ProductControllerMvcTest.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/test/java/org/example/evaluations/services/FakeStoreCategoryServiceTest.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/test/java/org/example/evaluations/services/FakeStoreProductServiceTest.java

@@ -1,0 +1,7 @@
+org/example/evaluations/evaluation/controllers/AzureController.class
+org/example/evaluations/evaluation/services/IKeyVault.class
+org/example/evaluations/evaluation/dtos/SecretDto.class
+org/example/evaluations/evaluation/controllers/GoogleController.class
+org/example/evaluations/EvaluationsApplication.class
+org/example/evaluations/evaluation/services/AzureKeyVault.class
+org/example/evaluations/evaluation/services/GoogleKeyVault.class

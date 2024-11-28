@@ -1,0 +1,9 @@
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/main/java/org/example/evaluations/EvaluationsApplication.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/main/java/org/example/evaluations/evaluation/controllers/CategoryController.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/main/java/org/example/evaluations/evaluation/controllers/ProductController.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/main/java/org/example/evaluations/evaluation/dtos/FakeStoreProductDto.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/main/java/org/example/evaluations/evaluation/models/Product.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/main/java/org/example/evaluations/evaluation/services/FakeStoreCategoryService.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/main/java/org/example/evaluations/evaluation/services/FakeStoreProductService.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/main/java/org/example/evaluations/evaluation/services/ICategoryService.java
+/home/gautam/scaler-work/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case/src/main/java/org/example/evaluations/evaluation/services/IProductService.java

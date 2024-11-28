@@ -1,0 +1,9 @@
+org/example/evaluations/evaluation/services/ICategoryService.class
+org/example/evaluations/evaluation/controllers/ProductController.class
+org/example/evaluations/evaluation/services/FakeStoreProductService.class
+org/example/evaluations/evaluation/dtos/FakeStoreProductDto.class
+org/example/evaluations/EvaluationsApplication.class
+org/example/evaluations/evaluation/controllers/CategoryController.class
+org/example/evaluations/evaluation/services/IProductService.class
+org/example/evaluations/evaluation/models/Product.class
+org/example/evaluations/evaluation/services/FakeStoreCategoryService.class

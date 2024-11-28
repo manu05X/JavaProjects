@@ -1,0 +1,4 @@
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/test/java/org/example/evaluations/controllers/AzureControllerTests.java
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/test/java/org/example/evaluations/controllers/GoogleControllerTests.java
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/test/java/org/example/evaluations/services/AzureKeyVaultTests.java
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/test/java/org/example/evaluations/services/GoogleKeyVaultTests.java

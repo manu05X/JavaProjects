@@ -1,0 +1,11 @@
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/EvaluationsApplication.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/configurations/NotificationConfig.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/controllers/NotificationController.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/dtos/NotificationRequestDto.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/models/Content.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/models/ContentType.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/models/Notification.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/models/NotificationType.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/services/EmailNotificationService.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/services/INotificationService.java
+/home/gautam/scaler-work/181691-bean-preference-with-primary-annotation-test_case/src/main/java/org/example/evaluations/evaluation/services/SmsNotificationService.java

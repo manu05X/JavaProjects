@@ -1,0 +1,4 @@
+org/example/evaluations/services/GoogleKeyVaultTests.class
+org/example/evaluations/services/AzureKeyVaultTests.class
+org/example/evaluations/controllers/AzureControllerTests.class
+org/example/evaluations/controllers/GoogleControllerTests.class

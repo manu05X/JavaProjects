@@ -1,0 +1,4 @@
+org/example/evaluations/services/FakeStoreCategoryServiceTest.class
+org/example/evaluations/controllers/ProductControllerMvcTest.class
+org/example/evaluations/services/FakeStoreProductServiceTest.class
+org/example/evaluations/controllers/CategoryControllerMvcTest.class

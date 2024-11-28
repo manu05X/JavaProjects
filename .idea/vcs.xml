@@ -2,6 +2,20 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/180011-achieve-dependency-injection-using-qualifier-annotation-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/180012-understanding-model-view-controller--mvc--pattern-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181690-implementing-createorder-and-deleteorder-api-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181691-bean-preference-with-primary-annotation-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181692-install-and-update-api-validation-in-spring-boot-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181693-provide-path-variables-and-body-in-apis-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181695-optional-and-required-query-params-in-the-apis-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181696-integrating-get-all-categories-api-of-fakestore-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181697-integrating-fakestores-deleteproduct-and-getallproductsofcategory--test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181698-implementing-controlleradvisor-and-exception-handlers-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181826-implementing-login-api-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181828-integrating-protected-apis-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181829-multiple-operations-on-cart-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181830-integrating-protected-apis---linkedin-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Project Assignment/180011-achieve-dependency-injection-using-qualifier-annotation-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Project Assignment/180012-understanding-model-view-controller--mvc--pattern-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Project Assignment/181690-implementing-createorder-and-deleteorder-api-test_case" vcs="Git" />

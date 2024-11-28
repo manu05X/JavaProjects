@@ -1,0 +1,8 @@
+/home/gautam/scaler-work/180012-understanding-model-view-controller--mvc--pattern-test_case/src/main/java/org/example/evaluations/EvaluationsApplication.java
+/home/gautam/scaler-work/180012-understanding-model-view-controller--mvc--pattern-test_case/src/main/java/org/example/evaluations/evaluation/controllers/OrderController.java
+/home/gautam/scaler-work/180012-understanding-model-view-controller--mvc--pattern-test_case/src/main/java/org/example/evaluations/evaluation/models/BaseModel.java
+/home/gautam/scaler-work/180012-understanding-model-view-controller--mvc--pattern-test_case/src/main/java/org/example/evaluations/evaluation/models/Order.java
+/home/gautam/scaler-work/180012-understanding-model-view-controller--mvc--pattern-test_case/src/main/java/org/example/evaluations/evaluation/models/OrderStatus.java
+/home/gautam/scaler-work/180012-understanding-model-view-controller--mvc--pattern-test_case/src/main/java/org/example/evaluations/evaluation/repositories/OrderRepository.java
+/home/gautam/scaler-work/180012-understanding-model-view-controller--mvc--pattern-test_case/src/main/java/org/example/evaluations/evaluation/services/IOrderService.java
+/home/gautam/scaler-work/180012-understanding-model-view-controller--mvc--pattern-test_case/src/main/java/org/example/evaluations/evaluation/services/OrderService.java

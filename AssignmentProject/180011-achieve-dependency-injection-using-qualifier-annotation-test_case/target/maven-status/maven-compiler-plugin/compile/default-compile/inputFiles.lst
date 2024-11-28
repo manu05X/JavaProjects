@@ -1,0 +1,7 @@
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/main/java/org/example/evaluations/EvaluationsApplication.java
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/main/java/org/example/evaluations/evaluation/controllers/AzureController.java
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/main/java/org/example/evaluations/evaluation/controllers/GoogleController.java
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/main/java/org/example/evaluations/evaluation/dtos/SecretDto.java
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/main/java/org/example/evaluations/evaluation/services/AzureKeyVault.java
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/main/java/org/example/evaluations/evaluation/services/GoogleKeyVault.java
+/home/gautam/scaler-work/180011-achieve-dependency-injection-using-qualifier-annotation-test_case/src/main/java/org/example/evaluations/evaluation/services/IKeyVault.java
