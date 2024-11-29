@@ -26,5 +26,9 @@
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182868-auth-database-flow-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182869-managing-bookings-in-db-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182936-employee-table-creation-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182937-purchase-option-relations-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182939-publication-and-author-relations-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182940-product-database-relations-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182941-lazy-vs-eager-loading-test_case" vcs="Git" />
   </component>
 </project>
