@@ -19,5 +19,9 @@
     <mapping directory="$PROJECT_DIR$/AssignmentProject/181846-protected-apis-amazon-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/181923-relation-between-instagram-entities-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/181926-student-teacher-rating-system-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/181927-relation-in-scaler-entities-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182761-group-message-member-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182865-employee-email-relation-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182867-category-operations-implementation-test_case" vcs="Git" />
   </component>
 </project>
