@@ -30,5 +30,6 @@
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182939-publication-and-author-relations-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182940-product-database-relations-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182941-lazy-vs-eager-loading-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182942-e-commerce-entity-optimization-test_case" vcs="Git" />
   </component>
 </project>
