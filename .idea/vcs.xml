@@ -23,5 +23,6 @@
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182761-group-message-member-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182865-employee-email-relation-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182867-category-operations-implementation-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182868-auth-database-flow-test_case" vcs="Git" />
   </component>
 </project>
