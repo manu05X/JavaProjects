@@ -32,5 +32,23 @@
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182941-lazy-vs-eager-loading-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182942-e-commerce-entity-optimization-test_case" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AssignmentProject/182943-person-and-its-addresses-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/182945-lets-cancel-an-order-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183000-create-upi-payment-link-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183001-instant-and-update-refund-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183002-configure-callback-url---payement-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183003-subscription-link-using-razorpay-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183004-payout-to-a-bank-account-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183005-stripe-payment-integration-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183006-stripe-checkout-session-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183007-create-a-stripe-subscription-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183007-create-a-stripe-subscription-test_case-1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/183008-create--update-and-delete-webhook-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/185237-search-and-get-paginated-results-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/185239-search-bookings-and-get-metadata-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/185240-find-and-sort-employees-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/185241-ppen-search-on-flights-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/185242-storing-popular-products-in-cache-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/185244-jwt-token-using-redis-test_case" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AssignmentProject/185245-storing-details-in-redis-cache-test_case" vcs="Git" />
   </component>
 </project>
