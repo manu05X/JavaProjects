@@ -66,6 +66,37 @@
 			<version>3.17.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- Add this for the API -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.12.5</version> <!-- Ensure you're using the correct version -->
+		</dependency>
+
+		<!-- Add this for the Implementation -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.12.5</version> <!-- Ensure you're using the correct version -->
+		</dependency>
+
+		<!-- Also add the JJWT Jackson module if you're using it for JSON handling -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.12.5</version> <!-- Ensure you're using the correct version -->
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>

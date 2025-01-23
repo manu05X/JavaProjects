@@ -12,6 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class Session extends BaseModel {
+    // can be random string or jwt
     private String token;
     private Date expiryAt;
     @ManyToOne

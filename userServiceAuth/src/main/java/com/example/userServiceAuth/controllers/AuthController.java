@@ -20,6 +20,14 @@ public class AuthController {
         this.authService = authService;
     }
 
+    // Creating a new User
+    @PostMapping("/signup")
+    public ResponseEntity<UserDto> signup(@RequestBody SignUpRequestDto requestDto){
+        UserDto userDto = authService.signUp(requestDto.getEmail(), requestDto.getPassword());
+
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody LoginRequestDto request){
         return authService.login(request.getEmail(), request.getPassword());
@@ -34,15 +42,9 @@ public class AuthController {
     }
 
 
-    @PostMapping("/signup")
-    public ResponseEntity<UserDto> signup(@RequestBody SignUpRequestDto requestDto){
-        UserDto userDto = authService.signUp(requestDto.getEmail(), requestDto.getPassword());
-
-        return new ResponseEntity<>(userDto, HttpStatus.OK);
-    }
 
     @PostMapping("/validate")
-    public ResponseEntity<SessionStatus> validateToken(ValidateTokenRequestDto requestDto){
+    public ResponseEntity<SessionStatus> validateToken(@RequestBody ValidateTokenRequestDto requestDto){
         SessionStatus sessionStatus = authService.validate(requestDto.getToken(), requestDto.getUserId());
 
         return new ResponseEntity<>(sessionStatus, HttpStatus.OK);

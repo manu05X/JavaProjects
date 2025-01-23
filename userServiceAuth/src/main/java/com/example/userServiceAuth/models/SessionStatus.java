@@ -1,6 +1,9 @@
 package com.example.userServiceAuth.models;
 
 public enum SessionStatus {
-    ACTIVE,
-    ENDED
+        ACTIVE,//1
+        ENDED,//2
+        LOGGED_OUT,//3
+        INVALID, // 4
+        EXPIRED,
 }

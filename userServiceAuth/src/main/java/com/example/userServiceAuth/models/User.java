@@ -15,6 +15,8 @@ import java.util.Set;
 public class User extends BaseModel {
     private String email;
     private String password;
+
+    // relation between user and role table, it fetches the user it also fetches the role
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
