@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6582fd1-54d1-48ac-877e-b3047e524d89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookREST/src/main/java/com/example/BookREST/BookRestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BookREST/src/main/java/com/example/BookREST/BookRestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayerProfile/src/main/java/com/example/PlayerProfile/service/PlayerProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerProfile/src/main/java/com/example/PlayerProfile/service/PlayerProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechGuide.pdf" beforeDir="false" />
-    </list>
+    <list default="true" id="b6582fd1-54d1-48ac-877e-b3047e524d89" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +24,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "userServiceAuth",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
