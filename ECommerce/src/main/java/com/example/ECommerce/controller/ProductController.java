@@ -5,13 +5,17 @@ import com.example.ECommerce.exceptions.ProductNotFoundException;
 import com.example.ECommerce.mapper.ProductMapper;
 import com.example.ECommerce.model.Category;
 import com.example.ECommerce.model.Product;
+import com.example.ECommerce.security.JwtData;
+import com.example.ECommerce.security.TokenValidator;
 import com.example.ECommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -19,6 +23,7 @@ public class ProductController {
 
     private final ProductService productServiceObj;
     private ProductMapper productMapper;
+    private TokenValidator tokenValidator;
 
 
     /*
@@ -31,9 +36,10 @@ public class ProductController {
     //Insted of using @Qualifiers we can make use of @Primary annotation for default use of which service
 
     @Autowired
-    public ProductController(ProductService productService, ProductMapper productMapper) {
+    public ProductController(ProductService productService, ProductMapper productMapper, TokenValidator tokenValidator) {
         this.productServiceObj = productService;
         this.productMapper = productMapper;
+        this.tokenValidator = tokenValidator;
     }
 
     @GetMapping
@@ -43,8 +49,15 @@ public class ProductController {
 
 
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable Long id) throws ProductNotFoundException {
+    public GenericProductDto getProductById(@RequestHeader(HttpHeaders.AUTHORIZATION) String authToken, @PathVariable Long id) throws ProductNotFoundException {
         System.out.println("Calling the Controller in test....");
+
+        Optional<JwtData> jwtDataOptional = tokenValidator.validateToken(authToken);
+        if(jwtDataOptional.isPresent()) {
+            // Do whatever needs to be done according to the business logic we can pass the role in getProductByIdService(id, role)
+            // that we get from token authToken
+        }
+
         GenericProductDto product = productServiceObj.getProductByIdService(id);
         if(product == null){
             return productMapper.mapProductToGenericDTO(new Product());
